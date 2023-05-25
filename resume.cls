@@ -25,6 +25,7 @@
 \usepackage[parfill]{parskip} % Remove paragraph indentation
 \usepackage{array} % Required for boldface (\bf and \bfseries) tabular columns
 \usepackage{ifthen} % Required for ifthenelse statements
+\usepackage{datetime2}
 
 \pagestyle{empty} % Suppress page numbers
 
@@ -95,7 +96,7 @@
 % Defines the rSection environment for the large sections within the CV
 \newenvironment{rSection}[1]{ % 1 input argument - section name
   \vspace{-0.2em}
-  \MakeUppercase{\bf #1} % Section title
+  \MakeUppercase{\textbf{#1}} % Section title
   \sectionskip
   \hrule % Horizontal line
   \vspace{0.2em}

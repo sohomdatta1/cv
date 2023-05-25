@@ -1,0 +1,8 @@
+artifacts/cv.pdf
+*.aux
+*.f*
+*.pdf
+*.out
+*.log
+*.txt
+*.synctex.gz

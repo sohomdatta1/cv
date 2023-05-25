@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install texlive
-        run: sudo apt install -y texlive-base texlive-latex-extra texlive-fonts-extra texlive-fonts-recommended texlive-full make git
+        run: sudo apt update && apt install -y texlive-base texlive-latex-extra texlive-fonts-extra texlive-fonts-recommended texlive-full make git
       - name: Build pdf
         run: make
       - name: Push to GitHub

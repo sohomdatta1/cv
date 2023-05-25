@@ -1,8 +1,7 @@
 all: cv
 
 cv:
-	git config --global --add safe.directory /__w/cv/cv
-	sed -i "s/SOHOMGITHASH/$(GIT_HASH)/g" main.tex
+	sed -i "s/GITHASH/$(GIT_HASH)/g" main.tex
 	pdflatex main.tex
 	cp main.pdf ./artifacts/cv.pdf
 

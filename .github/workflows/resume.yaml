@@ -5,7 +5,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: docker://ubuntu:20.04
+    container:
+      image: ubuntu:20.04
+      env:
+        DEBIAN_FRONTEND: noninteractive
     steps:
       - uses: actions/checkout@v2
       - name: Install texlive

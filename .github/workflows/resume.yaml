@@ -10,7 +10,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Install texlive
         run: apt update && apt install -y texlive-base texlive-latex-extra texlive-fonts-extra texlive-fonts-recommended texlive-full make git
       - name: Build pdf

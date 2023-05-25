@@ -2,7 +2,7 @@ all: cv
 
 cv:
 	git config --global --add safe.directory /__w/cv/cv
-	sed -i "s/SOHOMGITHASH/`git rev-parse --short HEAD`/g" main.tex
+	sed -i "s/SOHOMGITHASH/$(GIT_HASH)/g" main.tex
 	pdflatex main.tex
 	cp main.pdf ./artifacts/cv.pdf
 

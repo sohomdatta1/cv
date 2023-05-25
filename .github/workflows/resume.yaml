@@ -13,8 +13,11 @@ jobs:
       - uses: actions/checkout@v1
       - name: Install texlive
         run: apt update && apt install -y texlive-base texlive-latex-extra texlive-fonts-extra texlive-fonts-recommended texlive-full make git
+      - name: Extract short SHA
+        id: short_sha
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       - name: Build pdf
-        run: make
+        run: CC=${{ steps.short_sha.outputs.sha_short }} make
       - name: Push to GitHub
         uses: markjivko/push-to-github@main
         env:

@@ -7,9 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install texlive
-        run: sudo apt install -y texlive-base texlive-latex-extra texlive-fonts-extra texlive-fonts-recommended texlive-full make git
       - name: Build pdf
+        uses: docker://texlive/texlive:latest
         run: make
       - name: Push to GitHub
         uses: markjivko/push-to-github@main

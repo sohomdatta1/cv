@@ -26,8 +26,9 @@
 \usepackage{array} % Required for boldface (\bf and \bfseries) tabular columns
 \usepackage{ifthen} % Required for ifthenelse statements
 \usepackage{datetime2}
-
+\usepackage{bibentry}
 \pagestyle{empty} % Suppress page numbers
+
 
 %----------------------------------------------------------------------------------------
 %	HEADINGS COMMANDS: Commands for printing name and address
@@ -88,18 +89,17 @@
      \@ifundefined{@addressthree}{}{ % Print the third address if specified
     \printaddress{\@addressthree}}
 }
-
 %----------------------------------------------------------------------------------------
 %	SECTION FORMATTING
 %----------------------------------------------------------------------------------------
 
 % Defines the rSection environment for the large sections within the CV
 \newenvironment{rSection}[1]{ % 1 input argument - section name
-  \vspace{-0.2em}
+  \vspace{-0.3em}
   \MakeUppercase{\textbf{#1}} % Section title
   \sectionskip
   \hrule % Horizontal line
-  \vspace{0.2em}
+  \vspace{0.1em}
   \begin{list}{}{ % List for each individual item in the section
     \setlength{\leftmargin}{0em} % Margin within the section
   }

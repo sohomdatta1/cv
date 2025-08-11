@@ -8,7 +8,14 @@
 \usepackage{setspace}
 \usepackage[inline]{enumitem}
 \usepackage{xcolor}
-\date{\today}   
+\date{\today}
+
+% hanging publications: 1st line starts at beginning of line, 
+% further lines are placed a bit to the right
+\usepackage{hanging}
+\newcommand\publication[1]{%
+    \smallskip\par\hangpara{1.5em}{1}\bibentry{#1}\smallskip
+}
 \makeatletter
 % This command ignores the optional argument for itemize and enumerate lists
 \newcommand{\inlineitem}[1][]{%
@@ -25,59 +32,68 @@
 \usepackage[left=0.3in,top=0.3in,right=0.3in,bottom=0.3in]{geometry} % Document margins
 \hyphenpenalty=10000
 
+\nobibliography{pub.bib}
+\bibliographystyle{apacite}
 
 \newcommand{\tab}[1]{\hspace{.\textwidth}\rlap{#1}}
 \newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
 \name{Sohom Datta} % Your name
-\address{(+91) 9831281593 \\ sohomdatta1+web(at)gmail.com}% Your phone number and email
+\address{sohomdatta1+web(at)gmail.com}% Your phone number and email
 \address {\faWikipediaW \href{https://gerrit.wikimedia.org/r/q/owner:sohom.datta\%2540learner.manipal.edu}{ MediaWiki Gerrit} \\
 {\faGithub \href{https://github.com/sohomdatta1}{ GitHub}} \\
 {\faLinkedin \href{https://www.linkedin.com/in/sohom-datta-c29ob20k/}{ Linkedin}}}%
-
 \begin{document}
 \begin{rSection}{Education}
-
-{\bf Manipal Institute of Technology, Manipal} \hfill {\em July 2019 -- August 2023}  \\ B.Tech in Computer Science and Engineering\hfill
+\begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
+\itemsep -0.6em
+\item {\bf North Carolina State University, Raleigh} \hfill {\em August 2024 -- Ongoing}  \\ PhD in Computer Science\hfill
+\item {\bf Manipal Institute of Technology, Manipal} \hfill {\em July 2019 -- August 2023}  \\ B.Tech in Computer Science and Engineering\hfill
+\end{list}
 \end{rSection}
 \begin{rSection}{Achievements}
 \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
-\itemsep -0.5em
-\item Awarded 5000 USD for finding a mechanism to reliably leak a user's browsing history via a experimental "origin-trial" web feature in Google Chrome 116.
-\item Awarded 7500 USD for finding a XSS santitation deficiency in the html/template library in Golang. (\texttt{CVE-2023-24538})
+\itemsep -0.6em
+\item Found and fixed an authentication bypass, a cross-site scripting and a information disclosure vulnerability in English Wikipedia. (\texttt{CVE-2024-47848}, \texttt{CVE-2024-23174}, \texttt{CVE-2023-45369})
+\item Awarded 5000 USD for finding a mechanism to reliably leak a user's browsing history via an experimental ``origin-trial'' web feature in Google Chrome 116.
+\item Awarded 7500 USD for finding an XSS sanitization deficiency in the html/template library in Golang. (\texttt{CVE-2023-24538})
 \item Awarded 3133.7 USD for discovering authentication bypasses in the dart:core URI parsing module in Dart-lang by the Google Vulnerability Rewards Program in 2022. (\texttt{CVE-2022-3095}, \texttt{GHSA-m9pm-2598-57rj})
 \item Awarded 3133.7 USD for discovering a URL validation bypass in Google's Clojure library by the Google Vulnerability Rewards Program in 2021.
-\item Found and reported cross-site leakages (XS-leak) issues in Google Chrome and Firefox's implementation of the ResourceTiming API . (\texttt{CVE-2022-1146}, \texttt{CVE-2022-29915})
-\item Found and reported a high severity Denial-of-service attack against the popular jpeg-js javascript library to snyk.io.
+\item Found and reported cross-site leakages (XS-leak) issues in Google Chrome and Firefox's implementation of the ResourceTiming API. (\texttt{CVE-2022-1146}, \texttt{CVE-2022-29915})
+\item Found and reported a high severity Denial-of-service attack against the popular jpeg-js JavaScript library to snyk.io.
 \linebreak(\texttt{CVE-2022-25851}, \texttt{SNYK-JS-JPEGJS-2859218})
 \end{list}
 \end{rSection}
-\begin{rSection}{Technical Experience}
-\begin{rSubsection}{\bf Visiting researcher, Software Security Research Group}{\em February 15 2023 - December 31 2023}{Max Planck Insitute of Security and Privacy}{}
-\item Working on understanding race-condition bugs in application layer logic in commonly used web servers like Express, NextJS.
-\item Implementing fuzzers to automatically detect and flag security critical race-condition issues in application logic on web servers.
+\begin{rSection}{Research and Technical Experience}
+\begin{rSubsection}{\bf Research Assistant, Wolfpack Security and Privacy Research Lab}{\em February 2024 -- Ongoing}{North Carolina State University}{}
+\item Helped develop the infrastructure and organize HackPackCTF, a CTF competition played by X students in 
+\item Developed a Webview-based version of VisibleV8 that allows researchers to analyze JavaScript execution inside in-app-browsers.
+\item Helped open-source VisibleV8-crawler, a version of an internal tool used by the lab to perform internet-scale web crawling experiments.
+\end{rSubsection}
+\begin{rSubsection}{\bf Visiting researcher, Software Security Research Group}{\em February 15 2023 - December 31 2023}{Max Planck Institute of Security and Privacy}{}
+\item Working on understanding race-condition bugs in application layer logic in commonly used web servers like Express, and NextJS.
+\item Implementing fuzzers to automatically detect and flag security-critical race-condition issues in application logic on web servers.
 \end{rSubsection}
 \begin{rSubsection}{\bf Student Intern, Wolfpack Privacy and Security Lab}{\em February 15 2023 - 31 July 2023}{North Carolina State University}{}
-\item Working on improving VisibleV8, a research tool aimed at making it easier to perform large scale measurements of web security and abuse patterns on the internet.
-\item Implemented large scale architectural changes to the VisibleV8 crawling pipeline that were able to provide significant performance gains in terms of crawling and post-processing the logs generated on crawling websites.
+\item Working on improving VisibleV8, a research tool aimed at making it easier to perform large-scale measurements of web security and abuse patterns on the internet.
+\item Implemented large-scale architectural changes to the VisibleV8 crawling pipeline that were able to provide significant performance gains in terms of crawling and post-processing the logs generated on crawling websites.
 \item Contributed patches to fix deficiencies in VisibleV8's logging and tracing capabilities, such as it's ability to trace \texttt{eval(...)} and other code execution pathways.
 \item Conducting research into measuring privacy data leakages across cross-party contexts using VisibleV8.
 \end{rSubsection}
 \begin{rSubsection}{\bf Student Software Developer, Chromium}{\em June 2022 -- November 2022}{Google Summer of Code}{}
 \item Worked on aligning Chromium's implementation of the Performance API with the W3C specifications.
-\item Discovered and fixed bugs related to incorrect First Contentful Paint and Largest Contentful Paint entries in the process of refactoring the way the PaintTiming API marked contentful images in Chromium.
+\item Discovered and fixed bugs related to incorrect First Contentful Paint and Largest Contentful Paint entries while refactoring the way the PaintTiming API marked contentful images in Chromium.
 \item Collaborated with the W3C Web Performance Working Group to rectify issues in the way LCP timing entries were being reported at the Painting layer.
 \item Discovered and helped patch systemic security issues (cross-site leakages) in the implementation of the ResourceTiming API in the major browser engines, Webkit, Blink and Gecko (Firefox). (\texttt{CVE-2023-1232})
 \end{rSubsection}
-\begin{rSubsection}{\bf Research Assistant, Information and Communication Dept.}{\em December 2021 -- June 2022}{Manipal Institute of Technology}{}
-\item Conducted research into inter-process communication mechanisms and their application as a data-exfiltration vector in cross-process Spectre attacks under Professor Nisha P Shetty.
-\item Worked on building a novel obfuscation technique aimed at reducing the efficacy of linkage attacks against ego-centric networks.
-\end{rSubsection}
-%\clearpage
+%\begin{rSubsection}{\bf Research Assistant, Information and Communication Dept.}{\em December 2021 -- June 2022}{Manipal Institute of Technology}{}
+%\item Conducted research into inter-process communication mechanisms and their application as a data-exfiltration vector in cross-process Spectre attacks under Professor Nisha P Shetty.
+%\item Worked on building a novel obfuscation technique aimed at reducing the efficacy of linkage attacks against ego-centric networks.
+%\end{rSubsection}
 \begin{rSection}{Leadership positions}
 \begin{rSubsection}{\bf Subsystem Head, Cryptonite Manipal (cybersecurity student project)}{\em April 2021 -- August 2022}{Manipal Institute of Technology}{}
 \item Led a cybersecurity team of 22 engineering students and participated in Capture The Flag (CTF) competitions. 
 \item The team placed among the top 15 in India in CSAW CTF '21 hosted by NYU (one of the oldest capture the flag competitions for academic teams), secured 2nd place in India in ASIS CTF Finals 2021 and was ranked among the top 12 teams in India on CTFTime in 2021-2022.
-\item Created challenges and took an active role in managing the security infrastructure for niteCTF, an international cybersecurity capture the flag event that attracted over 1200+ participants from 43 countries.
+\item Created challenges and actively managed the security infrastructure for niteCTF, an international cybersecurity capture the flag event that attracted over 1200+ participants from 43 countries.
 \end{rSubsection}
 \begin{rSubsection}{\bf Senior Cybersecurity Mentor, Research Society Manipal}{\em August 2021 - August 2022}{Manipal Institute of Technology}{}
 \item Conducted workshops on control flow integrity, binary exploitation and format strings exploits detailing the state-of-the-art research in the area, including mitigation techniques such as ASLR, stack cookies and fuzzy testing.
@@ -96,11 +112,12 @@
 \item Improved developer documentation related to the extension, providing guides and detailed walkthroughs regarding its setup and use to help ease the onboarding process for new developers.
 \item Introduced Selenium integration tests across the ProofreadPage codebase to better validate critical frontend changes.
 \item Took initiative in overhauling the preload and caching mechanism provided by ProofreadPage to decrease load times for editor-facing components.
-\item Built EditInSequence, a community requested feature that allows users to edit multiple pages via a fast and easy to use interface.
+\item Built EditInSequence, a community-requested feature that allows users to edit multiple pages via a fast and easy to use interface.
 \end{rSubsection}
-\begin{rSubsection}{\bf Google Summer of Code Mentor, Wikimedia Foundation}{\em March 2021 -- Sep 2021}{Google Summer of Code}{}
-\item Guided and helped student developers build and integrate an image zooming and panning interface into the Wikisource Page Editor.
-\item Assisted in writing automated tests to detect accidental/malicious changes in minified javascript blobs imported as part of dependencies.
+\begin{rSubsection}{\bf Google Summer of Code Organization Admin, Wikimedia Foundation}{\em March 2023 -- Sep 2023}{Google Summer of Code}{}
+\item Participated 
+\item 
+\item Assisted in developing automated tests to detect accidental/malicious changes in minified JavaScript blobs imported as part of dependencies.
 \end{rSubsection}
 \begin{rSubsection}{ \bf Student Software Developer, Wikimedia}{\em March 2020 -- Sep 2020}{Google Summer of Code}{}
 \item Developed a software feature that made it easier for volunteers to work with ``pagelist"s, a custom syntax used to store page number information for multi-page files.
@@ -113,8 +130,8 @@
 \item {\bf Fuzzing sudo} - Performed a fuzzing campaign on sudo, and found latent use-after-frees, out-of-bound reads and integer overflows. (sudo-project/sudo \texttt{Issue\#198}, \texttt{PR\#196}, \texttt{PR\#218}, \texttt{PR\#227} )
 
 \item {\bf Software sandbox using seccomp-bpf} - Developed a toy process sandbox using the kernel seccomp API that enabled users to selectively allow and deny specific sequences of syscall usages that were considered malicious according to a set of heuristics rules.
-\item {\bf Dis, a stack based language } - Developed a compiler in Typescript for a toy stack-based language that used polish notation to perform arithmetic operations and compiled into x86 assembly.
-\item {\bf Pagelist Widget, a accessibility widget} - Developed a Javascript (ES5) based custom widget that allowed users to interact with a representation of the ''pagelist syntax`` (a syntax based on XML tags) graphically. Additionally, implemented heuristic logic that translated user inputs back into the ''pagelist syntax``.
+%\item {\bf Dis, a stack based language } - Developed a compiler in Typescript for a toy stack-based language that used polish notation to perform arithmetic operations and compiled into x86 assembly.
+% \item {\bf Pagelist Widget, a accessibility widget} - Developed a Javascript (ES5) based custom widget that allowed users to interact with a representation of the ''pagelist syntax`` (a syntax based on XML tags) graphically. Additionally, implemented heuristic logic that translated user inputs back into the ''pagelist syntax``.
 \item {\bf Djikstra's pathfinding algorithm in Python} - Developed a distributed system of nodes that dynamically computed the best path inside a maze using the publisher-subscriber model provided by the Robotic Operating System (ROS)
 \end{list}
 
@@ -128,6 +145,6 @@ Other Software/Frameworks \ & Chromium, jQuery, NodeJS, Express, React, Make, Te
 \end{rSection}
 \vspace{1em}
 \hrule
-\small \begin{center}This resume was last updated on \DTMnow. The latest version of this resume is available \href{https://sohomdatta1.github.io/cv/artifacts/cv.pdf}{on Github}.\\
+\small \small \begin{center}This resume was last updated on \DTMnow. The latest version of this resume is available \href{https://sohomdatta1.github.io/cv/artifacts/cv.pdf}{on Github}.\\
 \color{white} The specific commit from which this resume was generated is GITHASH.\end{center}
 \end{document}

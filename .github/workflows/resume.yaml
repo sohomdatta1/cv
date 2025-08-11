@@ -6,11 +6,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:20.04
+      image: ubuntu:24.04
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Install texlive
         run: apt update && apt install -y texlive-base texlive-latex-extra texlive-fonts-extra texlive-fonts-recommended texlive-full make git
       - name: Extract short SHA

@@ -4,4 +4,7 @@
 *.out
 *.log
 *.txt
+*.bbl
+*.bcf
+*.run.xml
 *.synctex.gz

@@ -8,15 +8,12 @@
 \usepackage{setspace}
 \usepackage[inline]{enumitem}
 \usepackage{xcolor}
+\usepackage[backend=biber,style=ieee,style=authoryear,maxbibnames=99,defernumbers=true]{biblatex}
+\nocite{*}
 \date{\today}
-
-% hanging publications: 1st line starts at beginning of line, 
-% further lines are placed a bit to the right
-\usepackage{hanging}
-\newcommand\publication[1]{%
-    \smallskip\par\hangpara{1.5em}{1}\bibentry{#1}\smallskip
-}
+\addbibresource{pub.bib}
 \makeatletter
+\usepackage{hanging}
 % This command ignores the optional argument for itemize and enumerate lists
 \newcommand{\inlineitem}[1][]{%
 \ifnum\enit@type=\tw@
@@ -29,12 +26,56 @@
 \fi}
 \makeatother
 \parindent=0pt
-\usepackage[left=0.3in,top=0.3in,right=0.3in,bottom=0.3in]{geometry} % Document margins
+\usepackage[left=0.3in,top=0.3in,right=0.3in,bottom=0.2in]{geometry} % Document margins
 \hyphenpenalty=10000
+\DeclareNameAlias{sortname}{given-family}
+\DeclareNameAlias{default}{given-family}
+\DeclareNameFormat{author}{%
+  \nameparts{#1}% split into given/family/etc.
+  \ifboolexpr{
+    test {\ifdefstring{\namepartfamily}{Datta}}
+    and
+    test {\ifdefstring{\namepartgiven}{Sohom}}
+  }
+    {\textbf{\namepartgiven}\space\textbf{\namepartfamily}}
+    {\namepartgiven\space\namepartfamily}%
+  \ifthenelse{\value{listcount}<\value{liststop}}
+    {\addcomma\space}
+    {}%
+}
+\AtEveryBibitem{%
+  % Clear the default formatting
+  \clearfield{url}
+  \clearlist{language}
+}
 
-\nobibliography{pub.bib}
-\bibliographystyle{apacite}
+% Redefine inproceedings entries (conference papers)
+\DeclareBibliographyDriver{inproceedings}{%
+  % --- Title first ---
+  \textbf{\printfield[titlecase]{title}}\\
+  % --- Authors ---
+  \printnames{author}\\
+  % --- Venue ---
+  \printfield{booktitle}%
+  \iffieldundef{year}{}{\space(\printfield{year})}%
+  \finentry
+}
 
+% Redefine article entries (journals)
+\DeclareBibliographyDriver{article}{%
+  \printfield[titlecase]{title}%
+  \newunit\newblock
+  \printnames{author}%
+  \newunit\newblock
+  \printfield{journaltitle}%
+  \iffieldundef{year}{}{\space(\printfield{year})}%
+  \finentry
+}
+\setlength\bibhang{0pt}
+\defbibenvironment{bibliography}
+  {\begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em \itemsep -0.6em}}
+  {\end{list}}
+  {\item}
 \newcommand{\tab}[1]{\hspace{.\textwidth}\rlap{#1}}
 \newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
 \name{Sohom Datta} % Your name
@@ -43,6 +84,7 @@
 {\faGithub \href{https://github.com/sohomdatta1}{ GitHub}} \\
 {\faLinkedin \href{https://www.linkedin.com/in/sohom-datta-c29ob20k/}{ Linkedin}}}%
 \begin{document}
+\vspace{-1em}
 \begin{rSection}{Education}
 \begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
 \itemsep -0.6em
@@ -50,30 +92,31 @@
 \item {\bf Manipal Institute of Technology, Manipal} \hfill {\em July 2019 -- August 2023}  \\ B.Tech in Computer Science and Engineering\hfill
 \end{list}
 \end{rSection}
-% \begin{rSection}{Publication}
-% \end{rSection}
+\rHeading{Publications}
+\printbibliography[heading=none]
 \begin{rSection}{Research and Technical Experience}
-\begin{rSubsection}{\bf Research Assistant, Wolfpack Security and Privacy Research Lab}{\em February 2024 -- Ongoing}{North Carolina State University}{}
-\item Helped develop the infrastructure and organize HackPackCTF, a CTF competition played by 300+ students across the world.
-\item Developed a Webview-based version of VisibleV8 that allows researchers to analyze JavaScript execution inside advertisements displayed inside mobile apps.
-
-\item Helped open-source VisibleV8-crawler, a version of an internal tool used by the lab to perform internet-scale web crawling experiments.
+\begin{rSubsection}{\bf Research Assistant, Wolfpack Security and Privacy Research Lab}{\em January 2024 -- Ongoing}{North Carolina State University}{}
+\item Conducted research into privacy-violating JavaScript code across different environments, like mobile browsers, WebViews.
+\item Maintained and extended VisibleV8, an open-source browser instrumentation framework across 25+ major Chrome releases.
+\item Built the VisibleV8 Crawler, an open-source tool that enabled internet-scale web crawling with VisibleV8.
+\item Ported VisibleV8 to Android WebViews, enabling us to analyse privacy violations in the Android advertising ecosystem.
+\item Designed infrastructure and co-organized HackPackCTF, a competition with 1000+ participants worldwide.
 \end{rSubsection}
-\begin{rSubsection}{\bf Visiting researcher, Software Security Research Group}{\em February 15 2023 - December 31 2023}{Max Planck Institute of Security and Privacy}{}
-\item Working on understanding race-condition bugs in application layer logic in commonly used web servers like Express, and NextJS.
-\item Implementing fuzzers to automatically detect and flag security-critical race-condition issues in application logic on web servers.
+\begin{rSubsection}{\bf Visiting researcher, Software Security Research Group}{\em September 2023 - December 2023}{Max Planck Institute of Security and Privacy}{}
+\item Worked on understanding race-condition bugs in application layer logic in commonly used web servers like Express, and NextJS.
+\item Implemented fuzzers to automatically detect and flag security-critical race-condition issues in application logic on web servers.
 \end{rSubsection}
-\begin{rSubsection}{\bf Student Intern, Wolfpack Privacy and Security Lab}{\em February 15 2023 - 31 July 2023}{North Carolina State University}{}
-\item Working on improving VisibleV8, a research tool aimed at making it easier to perform large-scale measurements of web security and abuse patterns on the internet.
-\item Implemented large-scale architectural changes to the VisibleV8 crawling pipeline that were able to provide significant performance gains in terms of crawling and post-processing the logs generated on crawling websites.
+\begin{rSubsection}{\bf Student Intern, Wolfpack Privacy and Security Lab}{\em February 2023 - July 2023}{North Carolina State University}{}
+\item Worked on improving VisibleV8, a research tool aimed at making it easier to perform large-scale measurements of web security and abuse patterns on the internet.
+\item Implemented large-scale architectural changes to the VisibleV8 crawling pipeline that improved performance in terms of crawling and post-processing the logs generated on crawling websites.
 \item Contributed patches to fix deficiencies in VisibleV8's logging and tracing capabilities, such as it's ability to trace \texttt{eval(...)} and other code execution pathways.
-\item Conducting research into measuring privacy data leakages across cross-party contexts using VisibleV8.
+\item Conducted research into measuring privacy data leakages across cross-party contexts using VisibleV8.
 \end{rSubsection}
 \begin{rSubsection}{\bf Student Software Developer, Chromium}{\em June 2022 -- November 2022}{Google Summer of Code}{}
 \item Worked on aligning Chromium's implementation of the Performance API with the W3C specifications.
 \item Discovered and fixed bugs related to incorrect First Contentful Paint and Largest Contentful Paint entries while refactoring the way the PaintTiming API marked contentful images in Chromium.
 \item Collaborated with the W3C Web Performance Working Group to rectify issues in the way LCP timing entries were being reported at the Painting layer.
-\item Discovered and helped patch systemic security issues (cross-site leakages) in the implementation of the ResourceTiming API in the major browser engines, Webkit, Blink and Gecko (Firefox). (\texttt{CVE-2023-1232})
+\item Discovered and patched systemic security issues (cross-site leakages) in the implementation of the ResourceTiming API in the major browser engines, Webkit, Blink and Gecko (Firefox). (\texttt{CVE-2023-1232})
 \end{rSubsection}
 %\begin{rSubsection}{\bf Research Assistant, Information and Communication Dept.}{\em December 2021 -- June 2022}{Manipal Institute of Technology}{}
 %\item Conducted research into inter-process communication mechanisms and their application as a data-exfiltration vector in cross-process Spectre attacks under Professor Nisha P Shetty.
@@ -81,16 +124,14 @@
 %\end{rSubsection}
 \begin{rSection}{Leadership positions}
 \begin{rSubsection}{\bf Subsystem Head, Cryptonite Manipal (cybersecurity student project)}{\em April 2021 -- August 2022}{Manipal Institute of Technology}{}
-\item Led a cybersecurity team of 22 engineering students and participated in Capture The Flag (CTF) competitions. 
-\item The team placed among the top 15 in India in CSAW CTF '21 hosted by NYU (one of the oldest capture the flag competitions for academic teams), secured 2nd place in India in ASIS CTF Finals 2021 and was ranked among the top 12 teams in India on CTFTime in 2021-2022.
+\item Led a cybersecurity team of 22 engineering students that placed among the top 15 in India in CSAW CTF '21 hosted by NYU (one of the oldest capture the flag competitions for academic teams), secured 2nd place in India in ASIS CTF Finals 2021 and was ranked among the top 12 teams in India on CTFTime in 2021-2022.
 \item Created challenges and actively managed the security infrastructure for niteCTF, an international cybersecurity capture the flag event that attracted over 1200+ participants from 43 countries.
 \item Conducted workshops on control flow integrity, binary exploitation and format strings exploits detailing the state-of-the-art research in the area, including mitigation techniques such as ASLR, stack cookies, and fuzzy testing.
 \item Mentored new recruits and provided resources and guidance on getting started on the basics of cybersecurity.
 \end{rSubsection}
 \end{rSection}
 \begin{rSubsection}{\bf Web-development Head, Association of Computing Machinery Manipal}{\em August 2021 -- August 2022}{Manipal Institute of Technology}{}
-\item Led and mentored a team of 10 students who were actively involved in building and maintaining websites for events conducted by the club.
-\item Took a lead in developing and maintaining the infrastructure for Scavenger Hunt, a inter-college event with over 700+ participants.
+\item Led and mentored a team of 10 students to develop and maintain infrastructure for Scavenger Hunt, an inter-college event with 700+ participants.
 \item Conducted workshops and one-on-one sessions to bring the freshers up to speed with modern secure web-development standards demonstrating web security attacks such as cross-site scripting, CSRF, DOM Cloberring etc.
 \end{rSubsection}
 \end{rSection}
@@ -101,7 +142,7 @@
 \item Advised the Wikimedia Foundation to invest in a mobile-first strategy to bring in newer contributors on the mobile platform (overwhelmingly used by people from the Global South)
 \end{rSubsection}
 \begin{rSubsection}{ \bf Lead Maintainer, ProofreadPage}{ \em October 2021 -- Present }{Wikimedia Foundation}{}
-\item Helped in maintaining the infrastructure for the ProofreadPage extension, which adds proofreading capabilities to MediaWiki and is deployed in over 70 production wikis managed by Wikimedia. (80+ major patches)
+\item Maintained the infrastructure for the ProofreadPage extension, which adds proofreading capabilities to MediaWiki and is deployed in over 70 production wikis managed by Wikimedia. (80+ major patches)
 \item Improved developer documentation related to the extension, providing guides and detailed walkthroughs regarding its setup and use to help ease the onboarding process for new developers.
 \item Introduced Selenium integration tests across the ProofreadPage codebase to better validate critical frontend changes.
 \item Took initiative in overhauling the preload and caching mechanism provided by ProofreadPage to decrease load times for editor-facing components.
@@ -153,5 +194,5 @@ Other Software/Frameworks \ & Chromium, jQuery, NodeJS, Express, React, Make, Te
 \vspace{1em}
 \hrule
 \small \small \begin{center}This resume was last updated on \DTMnow. The latest version of this resume is available \href{https://sohomdatta1.github.io/cv/artifacts/cv.pdf}{on Github}.\\
-\color{white} The specific commit from which this resume was generated is GITHASH.\end{center}
+\color{white} The specific commit from which this resume was generated is .\end{center}
 \end{document}

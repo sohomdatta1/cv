@@ -107,7 +107,13 @@
 }{
   \end{list}
 }
-
+\newcommand{\rHeading}[1]{
+  \vspace{-0.3em}
+  \MakeUppercase{\textbf{#1}} % Section title
+  \sectionskip
+  \hrule % Horizontal line
+  \vspace{0.1em}
+}
 %----------------------------------------------------------------------------------------
 %	WORK EXPERIENCE FORMATTING
 %----------------------------------------------------------------------------------------

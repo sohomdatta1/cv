@@ -1,0 +1,145 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{vv8webview-ndss26}{inproceedings}{}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=efe23003a8eb1b5f15caff638020df50}{%
+           family={Datta},
+           familyi={D\bibinitperiod},
+           given={Sohom},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=388b75d90b0378a9311156b2e50f0603}{%
+           family={Diamantaris},
+           familyi={D\bibinitperiod},
+           given={Michalis},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cd24d0a097870179900c931c75379d75}{%
+           family={Zafar},
+           familyi={Z\bibinitperiod},
+           given={Ahsan},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=160eea279b053492b0c98e614b66f034}{%
+           family={Su},
+           familyi={S\bibinitperiod},
+           given={Junhua},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bbce9aee267ed6a13345f2800ab8c288}{%
+           family={Das},
+           familyi={D\bibinitperiod},
+           given={Anupam},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=72bb0c8a2c0727d8418b8df6ccbe3a41}{%
+           family={Polakis},
+           familyi={P\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=19e1b0d9b37516a2bc461a98b035542e}{%
+           family={Kapravelos},
+           familyi={K\bibinitperiod},
+           given={Alexandros},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6cc4878ba65e73d17e516ed6710cc05c}
+      \strng{fullhash}{cc72fc4a87f9ab148aed1ced2622dead}
+      \strng{fullhashraw}{cc72fc4a87f9ab148aed1ced2622dead}
+      \strng{bibnamehash}{cc72fc4a87f9ab148aed1ced2622dead}
+      \strng{authorbibnamehash}{cc72fc4a87f9ab148aed1ced2622dead}
+      \strng{authornamehash}{6cc4878ba65e73d17e516ed6710cc05c}
+      \strng{authorfullhash}{cc72fc4a87f9ab148aed1ced2622dead}
+      \strng{authorfullhashraw}{cc72fc4a87f9ab148aed1ced2622dead}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{Proceedings of the Network and Distributed System Security Symposium (NDSS)}}
+      \field{month}{2}
+      \field{note}{to appear}
+      \field{title}{{[To appear] Cross-Boundary Mobile Tracking: Exploring Java-to-JavaScript Information Diffusion in WebViews}}
+      \field{year}{2026}
+      \true{nocite}
+    \endentry
+    \entry{vv8diverge-ccs25}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=cd24d0a097870179900c931c75379d75}{%
+           family={Zafar},
+           familyi={Z\bibinitperiod},
+           given={Ahsan},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=160eea279b053492b0c98e614b66f034}{%
+           family={Su},
+           familyi={S\bibinitperiod},
+           given={Junhua},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=efe23003a8eb1b5f15caff638020df50}{%
+           family={Datta},
+           familyi={D\bibinitperiod},
+           given={Sohom},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=19e1b0d9b37516a2bc461a98b035542e}{%
+           family={Kapravelos},
+           familyi={K\bibinitperiod},
+           given={Alexandros},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bbce9aee267ed6a13345f2800ab8c288}{%
+           family={Das},
+           familyi={D\bibinitperiod},
+           given={Anupam},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{f9440d9cf7de1659a87a66396cfb73c4}
+      \strng{fullhash}{397c5c5f071738ea466f9ffd6b99a09e}
+      \strng{fullhashraw}{397c5c5f071738ea466f9ffd6b99a09e}
+      \strng{bibnamehash}{397c5c5f071738ea466f9ffd6b99a09e}
+      \strng{authorbibnamehash}{397c5c5f071738ea466f9ffd6b99a09e}
+      \strng{authornamehash}{f9440d9cf7de1659a87a66396cfb73c4}
+      \strng{authorfullhash}{397c5c5f071738ea466f9ffd6b99a09e}
+      \strng{authorfullhashraw}{397c5c5f071738ea466f9ffd6b99a09e}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{Proceedings of the ACM Conference on Computer and Communications Security (CCS)}}
+      \field{month}{10}
+      \field{note}{to appear}
+      \field{title}{{[To appear] Same Script, Different Behavior: Characterizing Platform-Specific Divergent JavaScript Execution}}
+      \field{year}{2025}
+      \true{nocite}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

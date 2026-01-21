@@ -19,7 +19,7 @@ jobs:
       - name: Build pdf
         run: GIT_HASH=${{ steps.short_sha.outputs.sha_short }} make
       - name: Push to GitHub
-        uses: markjivko/push-to-github@main
+        uses: markjivko/push-to-github@cddf7b26db4dc6624d67ff72f1a116de2f548428
         env:
           GITHUB_SSH_KEY: ${{ secrets.CV_GITHUB_PRIVATE_SSH_KEY }}
         with:

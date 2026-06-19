@@ -1,0 +1,218 @@
+\documentclass{resume} % Use the custom resume.cls style
+\usepackage{fontawesome}
+\usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{subcaption}
+\usepackage{setspace}
+\usepackage[inline]{enumitem}
+\usepackage{xcolor}
+\usepackage[backend=biber,style=ieee,style=authoryear,maxbibnames=99,defernumbers=true]{biblatex}
+\nocite{*}
+\date{\today}
+\addbibresource{pub.bib}
+\makeatletter
+\usepackage{hanging}
+% This command ignores the optional argument for itemize and enumerate lists
+\newcommand{\inlineitem}[1][]{%
+\ifnum\enit@type=\tw@
+    {\descriptionlabel{#1}}
+  \hspace{\labelsep}%
+\else
+  \ifnum\enit@type=\z@
+       \refstepcounter{\@listctr}\fi
+    \quad\@itemlabel\hspace{\labelsep}%
+\fi}
+\makeatother
+\parindent=0pt
+\def\sectionskip{\smallskip} % Tighten the gap after each section heading (overrides resume.cls \medskip)
+\setlength{\parskip}{0.45em} % Slightly tighten inter-paragraph/subsection spacing (parfill default is larger)
+\usepackage[left=0.3in,top=0.3in,right=0.3in,bottom=0.3in]{geometry} % Document margins
+\hyphenpenalty=10000
+\DeclareNameAlias{sortname}{given-family}
+\DeclareNameAlias{default}{given-family}
+\DeclareNameFormat{author}{%
+  \nameparts{#1}% split into given/family/etc.
+  \ifboolexpr{
+    test {\ifdefstring{\namepartfamily}{Datta}}
+    and
+    test {\ifdefstring{\namepartgiven}{Sohom}}
+  }
+    {\textbf{\namepartgiven}\space\textbf{\namepartfamily}}
+    {\namepartgiven\space\namepartfamily}%
+  \ifthenelse{\value{listcount}<\value{liststop}}
+    {\addcomma\space}
+    {}%
+}
+\AtEveryBibitem{%
+  % Clear the default formatting
+  \clearfield{url}
+  \clearlist{language}
+}
+
+% Redefine inproceedings entries (conference papers)
+\DeclareBibliographyDriver{inproceedings}{%
+  % --- Title first ---
+  \textbf{\printfield[titlecase]{title}}\\
+  % --- Authors ---
+  \printnames{author}\\
+  % --- Venue ---
+  \printfield{booktitle}%
+  \iffieldundef{year}{}{\space(\printfield{year})}%
+  \finentry
+}
+
+% Redefine article entries (journals)
+\DeclareBibliographyDriver{article}{%
+  \printfield[titlecase]{title}%
+  \newunit\newblock
+  \printnames{author}%
+  \newunit\newblock
+  \printfield{journaltitle}%
+  \iffieldundef{year}{}{\space(\printfield{year})}%
+  \finentry
+}
+\setlength\bibhang{0pt}
+\defbibenvironment{bibliography}
+  {\begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em \itemsep -0.6em}}
+  {\end{list}}
+  {\item}
+\newcommand{\tab}[1]{\hspace{.\textwidth}\rlap{#1}}
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+\name{Sohom Datta} % Your name
+\address{sohomdatta1+web(at)gmail.com}% Your phone number and email
+\address {\faWikipediaW \href{https://gerrit.wikimedia.org/r/q/owner:sohomdatta1@gmail.com}{ MediaWiki Gerrit} \\
+{\faGithub \href{https://github.com/sohomdatta1}{ GitHub}} \\
+{\faLinkedin \href{https://www.linkedin.com/in/sohom-datta-c29ob20k/}{ Linkedin}}}%
+\begin{document}
+%\vspace{-1em}
+\begin{rSection}{Education}
+\begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
+\itemsep -0.6em
+\item {\bf North Carolina State University, Raleigh, USA} \hfill {\em August 2024 -- Present}  \\ Ph.D. in Computer Science. Advised by Dr. Alexandros Kapravelos (Focus: Web security and privacy)\hfill
+\item {\bf Manipal Institute of Technology, Manipal, India} \hfill {\em July 2019 -- August 2023}  \\ B.Tech. in Computer Science and Engineering. (Coursework: Compilers, Software Testing, Computer Security)\hfill
+\end{list}
+\end{rSection}
+\begin{rSection}{Research Interests}
+Web security and privacy; browser internals and instrumentation; dynamic program analysis; large-scale measurement of online tracking; fuzzing and vulnerability discovery.
+\end{rSection}
+\rHeading{Publications}
+\printbibliography[heading=none]
+\begin{rSection}{Research Experience}
+\begin{rSubsection}{\bf Graduate Research Assistant, Wolfpack Security and Privacy Research Lab}{\em January 2024 -- Present}{North Carolina State University}{}
+\item Conduct research into privacy-violating JavaScript across heterogeneous execution environments, including mobile browsers and Android WebViews.
+\item Maintain and extend VisibleV8, an open-source browser instrumentation framework, across 25+ major Chrome releases.
+%\item Built the VisibleV8 Crawler, an open-source tool that enabled internet-scale (around 1M websites) web crawling with VisibleV8.
+\item Ported VisibleV8 to Android WebViews, enabling the first dynamic analyses of privacy violations in the Android advertising ecosystem across 1K apps.
+\end{rSubsection}
+\begin{rSubsection}{\bf Visiting Researcher, Software Security Research Group}{\em September 2023 -- December 2023}{Max Planck Institute for Security and Privacy}{}
+\item Studied race-condition bugs in application-layer logic across widely used web servers such as Express and Next.js.
+\item Implemented fuzzers to automatically detect and flag security-critical race-condition issues in web server application logic.
+\end{rSubsection}
+\begin{rSubsection}{\bf Undergraduate Research Intern, Wolfpack Security and Privacy Research Lab}{\em February 2023 -- July 2023}{North Carolina State University}{}
+%\item Worked on improving VisibleV8, a research tool aimed at making it easier to perform large-scale measurements of web security and abuse patterns on the internet.
+\item Re-architected the VisibleV8 crawling pipeline, achieving a 20x improvement in crawling and post-processing of logs generated while visiting websites.
+\item Contributed patches addressing deficiencies in VisibleV8's logging and tracing capabilities, including its ability to trace \texttt{eval(...)} and other code-execution pathways.
+%\item Conducted research into measuring privacy data leakages across cross-party contexts using VisibleV8.
+\end{rSubsection}
+% \begin{rSubsection}{\bf Research Assistant, Information and Communication Dept.}{\em December 2021 -- June 2022}{Manipal Institute of Technology}{}
+% \item Conducted research into inter-process communication mechanisms and their application as a data-exfiltration vector in cross-process Spectre attacks under Professor Nisha P Shetty.
+% \item Worked on building a novel obfuscation technique aimed at reducing the efficacy of linkage attacks against ego-centric networks.
+% \end{rSubsection}
+\end{rSection}
+\begin{rSection}{Honors and Awards}
+\begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
+\itemsep -0.5em
+\item {\bf NC State University Graduate Fellowship } \hfill {\em 2024 -- 2025}
+\item {\bf Google ESCAL8 2024 invitee } \hfill {\em 2024}
+\item {\bf Google Vulnerability Rewards Program } -- Multiple awards for finding vulnerabilities across Go, Dart and Google Chrome \hfill {\em 2021 -- 2023}
+\item {\bf Mozilla Hall of Fame } -- Multiple awards for finding vulnerabilities in Firefox \hfill {\em 2022 -- 2023}
+\item {\bf CSAW CTF '21 (hosted by NYU) } -- placed among the top 15 teams in India; ASIS CTF Finals 2021 -- 2nd in India; ranked among the top 12 teams in India on CTFtime. \hfill {\em 2021--2022}
+\end{list}
+\end{rSection} 
+% \item Google Vulnerability Rewards Program -- 7,500 USD for an XSS sanitization deficiency in the Go \texttt{html/template} library. \hfill {\em 2023}
+% \item Google Chrome Vulnerability Rewards Program -- 5,000 USD for a mechanism to reliably leak a user's browsing history via an experimental ``origin-trial'' web feature in Chrome 116. \hfill {\em 2023}
+% \item Google Vulnerability Rewards Program -- 3,133.70 USD for authentication bypasses in the \texttt{dart:core} URI parsing module in Dart. \hfill {\em 2022}
+% \item Google Vulnerability Rewards Program -- 3,133.70 USD for a URL validation bypass in Google's Clojure library. \hfill {\em 2021}
+% \item CSAW CTF '21 (hosted by NYU) -- placed among the top 15 teams in India; ASIS CTF Finals 2021 -- 2nd in India; ranked among the top 12 teams in India on CTFtime. \hfill {\em 2021--2022}
+% \end{list}
+% \end{rSection}
+\begin{rSection}{Selected Vulnerability Disclosures}
+\begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
+\itemsep -0.5em
+\item Authentication bypass, cross-site scripting, and information-disclosure vulnerabilities in English Wikipedia. (\texttt{CVE-2024-47848}, \texttt{CVE-2024-23174}, \texttt{CVE-2023-45369})
+\item XSS sanitization deficiency in the Go \texttt{html/template} library. (\texttt{CVE-2023-24538})
+\item Cross-site leakage (XS-Leak) issues in Google Chrome and Firefox's implementation of the ResourceTiming API. (\texttt{CVE-2022-1146}, \texttt{CVE-2022-29915})
+\item Authentication bypasses in the \texttt{dart:core} URI parsing module in Dart. (\texttt{CVE-2022-3095}, \texttt{GHSA-m9pm-2598-57rj})
+\item High-severity denial-of-service vulnerability in the jpeg-js JavaScript library. (\texttt{CVE-2022-25851}, \texttt{SNYK-JS-JPEGJS-2859218})
+\end{list}
+\end{rSection}
+\begin{rSection}{Teaching, Mentoring, and Outreach}
+\begin{rSubsection}{\bf Shadow Teaching Assistant}{\em 2024 -- 2026}{North Carolina State University}{}
+\item Held office hours for CSC 405, CSC 537, and CSC 591, under Dr. Alexandros Kapravelos.
+\end{rSubsection}
+\begin{rSubsection}{\bf Mentor, HackPack}{\em 2024 -- 2025}{North Carolina State University}{}
+\item Designed the infrastructure for and co-organized HackPackCTF, a capture-the-flag competition with 1000+ participants worldwide.
+\item Mentored 7+ students in competing in CTFs, finding real-world security issues and working on academic research projects in web security and privacy.
+\end{rSubsection}
+\begin{rSubsection}{\bf Mentor, Google Summer of Code}{\em 2021 -- 2024}{Wikimedia Foundation}{}
+\item Mentored 4 contributors through the Google Summer of Code program -- one as co-mentor (2021) and three as primary mentor (2023--2024).
+\item Served as organization administrator for Wikimedia (2023) and attended the Google Mentor Summit (2024).
+\end{rSubsection}
+\begin{rSubsection}{\bf Member, Cryptonite Manipal (cybersecurity student group)}{\em April 2021 -- August 2022}{Manipal Institute of Technology}{}
+\item Led a cybersecurity team of 22 students to top rankings among Indian teams in international CTFs.
+\item Created challenges and managed the security infrastructure for niteCTF, an international CTF event that attracted 1200+ participants from 43 countries.
+\item Conducted workshops on control-flow integrity, binary exploitation, and format-string exploits, covering state-of-the-art mitigations such as ASLR, stack canaries, and fuzz testing.
+\end{rSubsection}
+\end{rSection}
+\begin{rSection}{Software and Open-Source Contributions}
+\begin{rSubsection}{\bf Volunteer Maintainer, MediaWiki}{\em October 2021 -- Present}{Wikimedia Foundation}{}
+\item Maintain the infrastructure for the ProofreadPage MediaWiki extension, which adds proofreading capabilities and is deployed across 70+ production wikis managed by Wikimedia. (80+ major patches)
+\item Overhauled the preload and caching mechanism to reduce load times for editor-facing components.
+\item Refactored and rewrote PageTriage, a tool used by volunteers to triage new pages created on Wikimedia wikis, to make it more modular and easier to maintain.
+\item Was granted commit access across all projects under the MediaWiki umbrella in 2025.
+% \item Built EditInSequence, a community-requested feature that allows users to edit multiple pages via a fast and easy to use interface.
+\end{rSubsection}
+\begin{rSubsection}{\bf Student Developer, Chromium}{\em June 2022 -- November 2022}{Google Summer of Code}{}
+\item Aligned Chromium's implementation of the Performance API with the relevant W3C specifications.
+\item Discovered and fixed 3 bugs related to incorrect First Contentful Paint and Largest Contentful Paint entries while refactoring how the PaintTiming API marked contentful images in Chromium.
+\item Collaborated with the W3C Web Performance Working Group to rectify how LCP timing entries were reported at the painting layer.
+\item Discovered and patched systemic cross-site leakage issues in the ResourceTiming API across the major browser engines WebKit, Blink, and Gecko (Firefox). (\texttt{CVE-2023-1232})
+\end{rSubsection}
+\begin{rSubsection}{\bf Student Developer, Wikimedia}{\em March 2020 -- September 2020}{Google Summer of Code}{}
+\item Developed a feature that made it easier for volunteers to work with ``pagelists,'' a custom syntax for storing page-number information for multi-page files.
+\item Developed heuristics that let users create and edit ``pagelists'' without interacting with the custom XML tag-based syntax.
+\item Assisted in developing automated tests to detect accidental or malicious changes in minified JavaScript blobs imported as dependencies.
+\end{rSubsection}
+\vspace{-0.3em}
+{\bf Selected research artifacts and projects}
+\begin{list}{$\bullet$}{\leftmargin=1em \itemindent=0em}
+\itemsep -0.5em
+\item {\bf VisibleV8 crawler} -- an open-source tool enabling internet-scale ($\sim$1M websites) web crawling with VisibleV8, used extensively within the Wolfpack Security and Privacy Research Lab.
+\item {\bf WebViewTracer} -- one of the first browser instrumentation frameworks for Android WebViews
+\item {\bf Fuzzing sudo} -- ran a fuzzing campaign on sudo and found latent use-after-frees, out-of-bounds reads, and integer overflows. (sudo-project/sudo \texttt{Issue\#198}, \texttt{PR\#196}, \texttt{PR\#218}, \texttt{PR\#227})
+% \item {\bf seccomp-bpf software sandbox} -- a process sandbox built on the kernel seccomp API that selectively allows or denies syscall sequences deemed malicious by a set of heuristic rules.
+%\item {\bf Dis, a stack based language } - Developed a compiler in Typescript for a toy stack-based language that used polish notation to perform arithmetic operations and compiled into x86 assembly.
+\end{list}
+\end{rSection}
+\begin{rSection}{Professional Service}
+\begin{list}{}{\leftmargin=1em \itemindent=0em}
+\itemsep -0.5em 
+\item {\bf Artifact Reviewer}, IEEE Symposium on Security and Privacy (S\&P) 2026 Artifact Evaluation Committee \hfill {\em 2025 -- 2026}
+\item {\bf Member}, Wikimedia Product and Technology Advisory Council \hfill {\em 2024 -- Present}
+\item {\bf Member}, Wikimedia Unsupported Tools Working Group \hfill {\em 2025 -- Present}
+%\item {\bf Shadow TA} for CSC 405, Computer Security North Carolina State University \hfill {\em Spring 2026}
+\end{list}
+\end{rSection}
+\begin{rSection}{Technical Skills}
+\begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
+Programming Languages \ & JavaScript, C, C++, Python, Go \\
+Research Areas \ & Browser Internals, Web Security, Dynamic Analysis, Fuzzing \\
+Tools \& Frameworks \ & Chromium, Puppeteer, Ghidra, IDA, AFL++, TensorFlow, PostgreSQL, MongoDB \\
+\end{tabular}
+\end{rSection}
+\hrule
+\small \small \begin{center}This resume was last updated on \DTMnow. The latest version of this resume is available \href{https://sohomdatta1.github.io/cv/artifacts/cv.pdf}{on Github}.\\
+\color{white} The specific commit from which this resume was generated is .\end{center}
+\end{document}
